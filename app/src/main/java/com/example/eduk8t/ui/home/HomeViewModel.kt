@@ -3,6 +3,7 @@ package com.example.eduk8t.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.eduk8t.api.UdemyFetchr
 
 class HomeViewModel : ViewModel() {
 
@@ -10,4 +11,15 @@ class HomeViewModel : ViewModel() {
         value = "This is home Fragment"
     }
     val text: LiveData<String> = _text
+
+    private val _udemyfetchr = MutableLiveData<String>().apply {
+        value = UdemyFetchr().fetchContents().toString()
+
+    }
+
+    val udemyFetchr: LiveData<String> =_udemyfetchr
+
+
+
+
 }
