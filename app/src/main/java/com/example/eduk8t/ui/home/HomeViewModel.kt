@@ -2,6 +2,7 @@ package com.example.eduk8t.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.eduk8t.api.UdemyFetchr
 
@@ -22,4 +23,12 @@ class HomeViewModel : ViewModel() {
 
 
 
+
+
+   private val _udemyLiveData:LiveData<String> = Transformations.map(UdemyFetchr().fetchContents(),{
+        it
+    })
+    val udemyLiveData: LiveData<String> = _udemyLiveData
 }
+
+
