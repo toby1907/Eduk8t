@@ -14,7 +14,7 @@ class UdemyFetchr {
     private val udemyApi: UdemyApi
     init {
         val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("https://www.udemy.com/")
+            .baseUrl("https://www.udemy.com/api-2.0/")
             .addConverterFactory(ScalarsConverterFactory.create())
             .build()
         udemyApi=retrofit.create(UdemyApi::class.java)

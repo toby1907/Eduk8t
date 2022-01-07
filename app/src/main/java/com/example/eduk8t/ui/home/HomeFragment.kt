@@ -19,6 +19,11 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 
 private const val TAG = "MainActivity"
 class HomeFragment : Fragment() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+    }
 
     private lateinit var homeViewModel: HomeViewModel
     private var _binding: FragmentHomeBinding? = null

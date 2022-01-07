@@ -11,4 +11,8 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="strings">Hello Bob</string>
+    <string name="eduk8t">Eduk8t</string>
+    <string name="hello_tobi">Hello\nTobi</string>
+    <string name="search_for_course">Search for course</string>
+    <string name="continue_where_you_stop">Continue where you stop</string>
 </resources>
