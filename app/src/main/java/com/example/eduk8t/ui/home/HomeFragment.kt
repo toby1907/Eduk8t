@@ -52,12 +52,10 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
         //retrofit http call
-        homeViewModel.udemyLiveData.observe(viewLifecycleOwner, Observer {
 
-        })
-       // val textView: TextView = binding.textHome
+       val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
-         //   textView.text = it
+           textView.text = it
         })
         return root
     }

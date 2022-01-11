@@ -1,34 +1,27 @@
 package com.example.eduk8t.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import com.example.eduk8t.api.UdemyFetchr
+import androidx.lifecycle.*
+import com.example.eduk8t.api.UdemyApi
+import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
+    private val _text = MutableLiveData<String>()
     val text: LiveData<String> = _text
-
-    private val _udemyfetchr = MutableLiveData<String>().apply {
-        value = UdemyFetchr().fetchContents().toString()
-
+    init {
+        getUdemyContents()
     }
 
-    val udemyFetchr: LiveData<String> =_udemyfetchr
 
 
-
-
-
-
-   private val _udemyLiveData:LiveData<String> = Transformations.map(UdemyFetchr().fetchContents(),{
-        it
-    })
-    val udemyLiveData: LiveData<String> = _udemyLiveData
+    private fun getUdemyContents() {
+        viewModelScope.launch {
+            val listResult = UdemyApi.retrofitService.fetchContents()
+            _text.value = listResult
+        }
+    }
 }
+
+
 
 
