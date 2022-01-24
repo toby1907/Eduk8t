@@ -1,7 +1,7 @@
 package com.example.eduk8t.ui.home
 
 import androidx.lifecycle.*
-import com.example.eduk8t.api.UdemyApi
+import com.example.eduk8t.network.UdemyApi
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
