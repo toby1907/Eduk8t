@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import com.example.eduk8t.domain.Course
 
 
-@Entity
+@Entity(tableName = "courses_table")
 data class DatabaseCourse constructor(
     @PrimaryKey
     val id : Int,

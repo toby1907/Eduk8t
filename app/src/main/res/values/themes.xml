@@ -12,8 +12,14 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
         <!-- Customize your theme here. -->
-    </style>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:textViewStyle"> @style/eduk8tTextStyle</item>
 
+    </style>
+//text style
+    <style name="eduk8tTextStyle" parent="android:Widget.TextView">
+        <item name="android:textColor"> @color/black</item>
+    </style>
     <style name="Theme.Eduk8t.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

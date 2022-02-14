@@ -13,11 +13,14 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.example.eduk8t.databinding.ActivityMainBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
     private val toolbar: Toolbar?
         get() = findViewById(R.id.apptoolbar)
+    private val bottomAppBar: BottomNavigationView?
+        get()=findViewById(R.id.bottom_navigation)
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
@@ -47,6 +50,10 @@ class MainActivity : AppCompatActivity() {
         )
       setupActionBarWithNavController(navController, appBarConfiguration)
        navView.setupWithNavController(navController)
+
+
+//setting up the bottomNavBar
+        bottomAppBar?.setupWithNavController(navController)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -60,3 +67,50 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 }
+
+/*
+
+
+class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var navController: NavController
+    private lateinit var appBarConfiguration: AppBarConfiguration
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val navHostFragment = supportFragmentManager.findFragmentById(
+            R.id.nav_host_fragment_container
+        ) as NavHostFragment
+
+
+        navController = navHostFragment.navController
+
+
+
+        val topLevelDestinations = setOf(R.id.homeFragment)
+
+        appBarConfiguration = AppBarConfiguration(topLevelDestinations)
+
+        val bottomViewNavigation = binding.bottomViewNavigation
+
+        bottomViewNavigation.setupWithNavController(navController)
+
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.viewPagerFragment || destination.id == R.id.splashScreenFragment ||
+                destination.id == R.id.detailFragment || destination.id == R.id.categoriesFragment
+            ) {
+                bottomViewNavigation.visibility = View.GONE
+            } else {
+                bottomViewNavigation.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        return super.onSupportNavigateUp() || navController.navigateUp(appBarConfiguration)
+    }
+}*/

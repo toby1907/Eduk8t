@@ -26,13 +26,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
+            android:alpha="0.7"
             android:fontFamily="@font/lato_bold"
             android:gravity="center_vertical"
             android:lineSpacingExtra="0sp"
-            android:text="@string/hello_tobi"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Hello\nTobi" />
+            android:text="Hello\nUser" />
 
         <EditText
             android:id="@+id/search_edit_text"
@@ -85,7 +85,7 @@
                 android:layout_marginTop="36dp"
                 android:gravity="center_vertical"
                 android:lineSpacingExtra="0sp"
-                android:text="@string/continue_where_you_stop"
+                tools:text="@string/continue_where_you_stop"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="@+id/imageView4"
                 app:layout_constraintHorizontal_bias="0.123"
@@ -143,11 +143,13 @@
             app:layout_constraintTop_toBottomOf="@+id/your_course_textview" />
 
         <com.google.android.material.tabs.TabLayout
+            app:tabMode="scrollable"
             android:id="@+id/tabLayout"
             style="@style/Widget.App.TabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            app:tabSelectedTextColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -182,16 +184,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        style="@style/Widget.App.BottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
-        app:menu="@menu/buttom_navigation_menu" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

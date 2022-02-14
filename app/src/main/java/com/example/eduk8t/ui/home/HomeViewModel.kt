@@ -1,7 +1,7 @@
 package com.example.eduk8t.ui.home
 
 import androidx.lifecycle.*
-import com.example.eduk8t.network.UdemyApi
+
 import kotlinx.coroutines.launch
 
 class HomeViewModel : ViewModel() {
@@ -16,8 +16,7 @@ class HomeViewModel : ViewModel() {
 
     private fun getUdemyContents() {
         viewModelScope.launch {
-            val listResult = UdemyApi.retrofitService.fetchContents()
-            _text.value = listResult
+
         }
     }
 }

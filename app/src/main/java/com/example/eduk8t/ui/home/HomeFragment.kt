@@ -4,17 +4,27 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
+import com.example.eduk8t.tablayout.AllFragment
+import com.example.eduk8t.CoursesFragment
+import com.example.eduk8t.NewFragment
+import com.example.eduk8t.PopularFragment
 import com.example.eduk8t.databinding.FragmentHomeBinding
+import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.fragment_home.view.*
 
 private const val TAG = "MainActivity"
 class HomeFragment : Fragment() {
+
+    //when requested, this adapter retrurns a
+    private lateinit var demoCollectionAdapter: DemoCollectionAdapter
+    private lateinit var viewPager: ViewPager2
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+//adapter here
 
     }
 
@@ -33,6 +43,24 @@ class HomeFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
     }
+    class DemoCollectionAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+
+        override fun getItemCount(): Int = 3
+
+        override fun createFragment(position: Int): Fragment {
+            // Return a NEW fragment instance in createFragment(int)
+            return when (position) {
+                0 -> AllFragment()
+                1 -> PopularFragment()
+                2 -> NewFragment()
+                else -> {
+                    CoursesFragment()
+                }
+            }
+
+
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,12 +72,25 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        //retrofit http call
 
-       val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-           textView.text = it
-        })
+
+        //adding viewpager implementation
+        val tabLayout = root.tabLayout
+        demoCollectionAdapter = DemoCollectionAdapter(this)
+        viewPager = root.pager
+        viewPager.adapter = demoCollectionAdapter
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            //tab.text = "OBJECT ${(position + 1)}"
+when(position){
+    0 -> tab.text = "All"
+    1 -> tab.text = "Popular"
+    2-> tab.text = "New"
+}
+        }.attach()
+
+
+
         return root
     }
 
@@ -57,4 +98,5 @@ class HomeFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }
